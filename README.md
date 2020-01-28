@@ -1,0 +1,1 @@
+This repo contains a collection of demonstration projects published by the Embrace.io team.

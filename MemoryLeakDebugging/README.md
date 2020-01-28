@@ -1,0 +1,1 @@
+This project demonstrates the process of finding and debugging a memory leak contained in a third party SDK.  
