@@ -24,7 +24,7 @@ class MasterViewController: UITableViewController {
     }
     
     // EMBRACE HINT:
-    // Embrace will automaticaly capture class names for views.  Sometimes that's what you want,
+    // Embrace will automatically capture class names for views.  Sometimes that's what you want,
     // other times it is better to customize the name of a view.  This is especially important if
     // the view's class is used in many places inside your app.
     // Implement this method, including the @objc tag so embrace can call it, allows you to customize the name.
@@ -48,7 +48,7 @@ class MasterViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         // EMBRACE HINT:
         // Event logging is how you can ensure that events are available in alerts as they happen, rather than when sessions end.
-        // If you are tracking down a difficult bug, or trying to understand a complex interaction -- logging is an appopriate API to use
+        // If you are tracking down a difficult bug, or trying to understand a complex interaction -- logging is an appropriate API to use
         // For lighter weight tracking like navigation events, look into breadcrumbs.
         DispatchQueue.main.asyncAfter(deadline: .now()+2) {
             // EMBRACE HINT:

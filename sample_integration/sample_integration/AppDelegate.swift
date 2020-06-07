@@ -7,6 +7,9 @@
 //
 
 import UIKit
+// EMBRACE HINT:
+// Embrace is integrated using cocoapods.  If you just downloaded the project and it is failing to build, simply run
+// 'pod update' from the root of the project in terminal,  See: https://docs.embrace.io/docs/ios-integration-guide
 import Embrace
 
 @UIApplicationMain
@@ -17,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // EMBRACE HINT:
-        // Embrace can use either objectiv-c or swift style logging, to enable swift style logging set this flag to true
+        // Embrace can use either objective-c or swift style logging, to enable swift style logging set this flag to true
         // This can be done before calling start to ensure all logging is in the the clean format
         Embrace.sharedInstance()?.setCleanLogsEnabled(true)
         
@@ -35,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // EMBRACE HINT:
         // Embrace's platform is built around user sessions, finding your users when they have a problem requires that Embrace knows some
-        // unique information about your user.  We recommend sharing an annonymized version of your internal user id.  This way your
+        // unique information about your user.  We recommend sharing an anonymized version of your internal user id.  This way your
         // users will appear in searches when you look, while Embrace will not be able to link sessions back to specific users -- only you can.
         Embrace.sharedInstance()?.setUserIdentifier("internal_user_id_1234");
         
@@ -54,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // EMBRACE HINT:
         // As you can see from this project, Embrace is much more than just a simple crash tracker.  If you do want to try out
         // Embrace's crash tracking capabilities, simply uncomment the below dispatch call.  Ensure that you run your application on
-        // real hardware, without xcode running, to ensure the crash is captured correctly.
+        // real hardware, without Xcode running, to ensure the crash is captured correctly.
         // see: https://docs.embrace.io/docs/crash-debugging for more information
 //        DispatchQueue.main.asyncAfter(deadline: .now()+5) {
 //            Embrace.sharedInstance()?.crash()
