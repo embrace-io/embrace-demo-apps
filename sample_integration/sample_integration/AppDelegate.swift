@@ -10,6 +10,8 @@ import UIKit
 // EMBRACE HINT:
 // Embrace is integrated using cocoapods.  If you just downloaded the project and it is failing to build, simply run
 // 'pod update' from the root of the project in terminal,  See: https://docs.embrace.io/docs/ios-integration-guide
+// Additionally open the 'Embrace-Info.plist' file and fill in your own API_KEY
+// Make sure to look at the 'Embrace Symbol Upload' build phase to learn about dsyms and symbolication
 import Embrace
 
 @UIApplicationMain
@@ -20,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         // EMBRACE HINT:
-        // Embrace can use either objective-c or swift style logging, to enable swift style logging set this flag to true
+        // Embrace can use either objective-c or swift style logging.  To enable swift style logging set this flag to true
         // This can be done before calling start to ensure all logging is in the the clean format
         Embrace.sharedInstance()?.setCleanLogsEnabled(true)
         
@@ -28,6 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Always initialize Embrace as early as possible and in-line with the launch methods your application is using
         // Embrace can't measure what it can't see, so initializing as early as possible gets you the most information to work with.
         // Notice if you include your API_KEY in the Embrace-Info.plist file you don't have to also include it here.
+        //
+        // Note: If you want to also use other reporting system such as Crashlytics, that's ok!  Just make sure to initialize Embrace
+        // first so we can ensure our compatibility with Crashlytics.  Also set 'CRASH_REPORT_ENABLED' to 'NO' in Embrace-Info.plist if
+        // you want to use a separate crash reporting system.
         Embrace.sharedInstance()?.start(launchOptions: launchOptions)
         
         // EMBRACE HINT:
@@ -37,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Embrace.sharedInstance()?.endAppStartup();
         
         // EMBRACE HINT:
-        // Embrace's platform is built around user sessions, finding your users when they have a problem requires that Embrace knows some
+        // Embrace's platform is built around user sessions.  Finding your users when they have a problem requires that Embrace knows some
         // unique information about your user.  We recommend sharing an anonymized version of your internal user id.  This way your
         // users will appear in searches when you look, while Embrace will not be able to link sessions back to specific users -- only you can.
         Embrace.sharedInstance()?.setUserIdentifier("internal_user_id_1234");

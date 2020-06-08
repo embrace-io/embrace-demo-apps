@@ -125,7 +125,7 @@ class MasterViewController: UITableViewController {
         let object = objects[indexPath.row] as! NSDate
         cell.textLabel!.text = object.description
         // EMBRACE HINT:
-        // This is where we end our add item moment.  We wanted to measure the this interaction as it is core to our user experience.
+        // This is where we end our add item moment.  We wanted to measure this interaction as it is core to our user experience.
         // By measuring user interactions in this manner you can start to understand how app performance impacts your user journey.
         if (waitingForReload) {
             waitingForReload = false
