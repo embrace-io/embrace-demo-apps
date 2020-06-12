@@ -2,7 +2,7 @@
 
 This sample project demonstrates many of the features of Embrace so you can better understand how to use them within your own application.
 
-The application is based off the Apple template master-detail application, this sample ships with Xcode.  
+The application is based off the Apple template master-detail application, which ships with Xcode.  
 
 As you read through the code, look out for "Embrace Hint" comments.  These explain why we're making the calls were making, and may give you some ideas of how to use Embrace yourself.
 
