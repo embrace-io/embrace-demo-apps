@@ -1,0 +1,16 @@
+PODS:
+  - EmbraceIO-DEV (3.1.0)
+
+DEPENDENCIES:
+  - EmbraceIO-DEV (from `../../embrace-ios-sdk`)
+
+EXTERNAL SOURCES:
+  EmbraceIO-DEV:
+    :path: "../../embrace-ios-sdk"
+
+SPEC CHECKSUMS:
+  EmbraceIO-DEV: bb2a07b335e9d571f66d9d1822af8e83c9c22c38
+
+PODFILE CHECKSUM: 1f7eae5233ef4803711e5d6ed27893088e3ab05f
+
+COCOAPODS: 1.9.0

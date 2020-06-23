@@ -6,5 +6,5 @@ target 'sample_integration' do
   use_frameworks!
 
   # Pods for sample_integration
-  pod 'EmbraceIO'
+  pod 'EmbraceIO-DEV', :path => '../../embrace-ios-sdk'
 end

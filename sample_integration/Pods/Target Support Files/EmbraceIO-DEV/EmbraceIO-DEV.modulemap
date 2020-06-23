@@ -1,0 +1,6 @@
+framework module Embrace {
+  umbrella header "EmbraceIO-DEV-umbrella.h"
+
+  export *
+  module * { export * }
+}

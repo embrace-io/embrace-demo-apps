@@ -1,0 +1,44 @@
+{
+  "name": "EmbraceIO-DEV",
+  "version": "3.1.0",
+  "summary": "Visibility into your users that you didn't have before",
+  "description": "Embrace is the only performance monitoring platform focused solely on mobile. We are built\nfor the entire mobile team to assure the stability and performance of their apps.",
+  "homepage": "http://embrace.io",
+  "license": {
+    "type": "Commercial",
+    "text": "Copyright 2017 Embrace.io"
+  },
+  "authors": "Embrace.io",
+  "documentation_url": "https://docs.embrace.io",
+  "header_dir": "Embrace",
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source": {
+    "path": "."
+  },
+  "source_files": [
+    "Embrace/**/*.{h,m,c}",
+    "KSCrash/Source/KSCrash/Recording/**/*.{h,m,mm,c,cpp}",
+    "KSCrash/Source/KSCrash/llvm/**/*.{h,m,mm,c,cpp}",
+    "KSCrash/Source/KSCrash/swift/**/*.{h,m,mm,c,cpp}",
+    "KSCrash/Source/KSCrash/Reporting/Filters/KSCrashReportFilter.h"
+  ],
+  "public_header_files": [
+    "Embrace/**/*.h",
+    "KSCrash/Source/KSCrash/Recording/KSCrash.h",
+    "KSCrash/Source/KSCrash/Recording/KSCrashC.h",
+    "KSCrash/Source/KSCrash/Recording/KSCrashReportWriter.h",
+    "KSCrash/Source/KSCrash/Recording/KSCrashReportFields.h",
+    "KSCrash/Source/KSCrash/Recording/Monitors/KSCrashMonitorType.h",
+    "KSCrash/Source/KSCrash/Reporting/Filters/KSCrashReportFilter.h"
+  ],
+  "frameworks": "Foundation",
+  "libraries": [
+    "c++",
+    "z"
+  ],
+  "xcconfig": {
+    "GCC_ENABLE_CPP_EXCEPTIONS": "YES"
+  }
+}
