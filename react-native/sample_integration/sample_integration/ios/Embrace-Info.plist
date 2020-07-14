@@ -2,8 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+<!--  EMBRACE HINT: You can use our internal crash reporting. See "https://embrace.io/docs/ios/crash-report/" -->
+	<key>CRASH_REPORT_ENABLED</key>
+	<true/>
 	<key>API_KEY</key>
 <!--  EMBRACE HINT: Use your API Key-->
-	<string>FeUwc</string>
+	<string>YOUR_API_KEY</string>
 </dict>
 </plist>
