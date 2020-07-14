@@ -50,7 +50,6 @@ static void InitializeFlipper(UIApplication *application) {
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
-  //WARNING
   // EMBRACE HINT:
   // Fill in your own API_KEY. You can get this from Integration Page, see https://embrace.io/docs/react-native/login-embrace-dashboard/
   [[Embrace sharedInstance] startWithKey:@"YOUR_API_KEY" launchOptions: launchOptions framework:EMBAppFrameworkReactNative];

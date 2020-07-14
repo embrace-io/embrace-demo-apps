@@ -1,6 +1,9 @@
 package com.sample_integration;
 
 import com.facebook.react.ReactActivity;
+//import io.embrace.android.embracesdk.annotation.StartupActivity;
+
+//@StartupActivity
 
 public class MainActivity extends ReactActivity {
 

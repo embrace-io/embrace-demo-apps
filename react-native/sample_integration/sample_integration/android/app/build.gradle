@@ -1,4 +1,7 @@
 apply plugin: "com.android.application"
+//EMBRACE HINT: apply the Embrace swazzler plugin.
+apply plugin: "embrace-swazzler"
+
 
 import com.android.build.OutputFile
 
@@ -76,9 +79,10 @@ import com.android.build.OutputFile
  *   extraPackagerArgs: []
  * ]
  */
-
 project.ext.react = [
-    enableHermes: false,  // clean and rebuild if changing
+        enableHermes: false,  // clean and rebuild if changing
+        entryFile: "index.js",
+        extraPackagerArgs: ["--sourcemap-output", "$buildDir/generated/sourcemaps/android-embrace.bundle.map"]
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -122,6 +126,10 @@ def enableHermes = project.ext.react.get("enableHermes", false);
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
+
+// EMBRACE HINT:
+// Specify that the Embrace SDK uses Java 8 features with the compileOptions settings.
+// The latest RN versions already include this, but It's a good idea to make sure that's is the case.
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
