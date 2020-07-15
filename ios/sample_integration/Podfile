@@ -8,4 +8,5 @@ target 'sample_integration' do
   # Pods for sample_integration
   pod 'EmbraceIO'
   pod 'Alamofire'
+  pod 'SwiftyJSON'
 end
