@@ -1,0 +1,3 @@
+${PODS_ROOT}/Target Support Files/Pods-sample_integration/Pods-sample_integration-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${PODS_ROOT}/EmbraceIO/Embrace.framework
