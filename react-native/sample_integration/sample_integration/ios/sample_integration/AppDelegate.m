@@ -52,6 +52,9 @@ static void InitializeFlipper(UIApplication *application) {
   [self.window makeKeyAndVisible];
   // EMBRACE HINT:
   // Fill in your own API_KEY. You can get this from Integration Page, see https://embrace.io/docs/react-native/login-embrace-dashboard/
+  // Always initialize Embrace as early as possible and in-line with the launch methods your application is using
+  // Embrace can't measure what it can't see, so initializing as early as possible gets you the most information to work with.
+  // Notice if you include your API_KEY in the Embrace-Info.plist file you don't have to also include it here.
   [[Embrace sharedInstance] startWithKey:@"YOUR_API_KEY" launchOptions: launchOptions framework:EMBAppFrameworkReactNative];
 
   return YES;

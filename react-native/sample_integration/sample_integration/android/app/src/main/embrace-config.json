@@ -1,14 +1,11 @@
 
 {
-  "app_id": "YOUR_APP_ID",
-  "api_token": "YOUR_API_TOKEN",
+  "app_id": "YOUR_API_KEY",
+  "api_token": "YOUR_APP_TOKEN",
   "sdk_config": {
     "networking": {
       "trace_id_header": "test_trace_id_header",
       "default_capture_limit": 10
-    },
-    "session": {
-      "max_session_seconds": 180
     },
     "crash_handler": {
       "enabled": true

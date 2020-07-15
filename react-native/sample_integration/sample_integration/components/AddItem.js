@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -7,10 +7,43 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {Icon} from 'react-native-eva-icons';
+import {
+  getSessionProperties,
+  addSessionProperty,
+  startView,
+  endView,
+} from 'react-native-embrace';
 
 const AddItem = ({addItem}) => {
   const [text, setText] = useState('');
-  const onChange = (textValue) => setText(textValue);
+  const addView = 'Add Item Component';
+  const onChange = (textValue) => {
+    setText(textValue);
+  };
+
+  useEffect(() => {
+    // EMBRACE HINT:
+    // Embrace will automatically capture class names for views.  Sometimes that's what you want,
+    // other times it is better to customize the name of a view.
+    // By default, Embrace will track native views.
+    // If you’d like to track when a React component is mounted and unmounted,
+    //  you can do so with the startView and endView functions.
+    startView(addView);
+
+    async () => {
+      // EMBRACE HINT:
+      // Session properties defined as permanent persist across app launch.
+      //  This means you can read those properties back and use them for application logic.
+      // Notice that the getSessionProperties and addSessionProperty return promises
+      const sessionProps = await getSessionProperties();
+      console.log('getProperties -> sessionProps', sessionProps);
+    };
+    endView(addView);
+  }, []);
+
+  const setSessionItem = (value) => {
+    addSessionProperty('Session item:', value, false);
+  };
 
   return (
     <View>
@@ -24,10 +57,11 @@ const AddItem = ({addItem}) => {
         style={styles.btn}
         onPress={() => {
           addItem(text);
+          setSessionItem(text);
           setText('');
         }}>
         <Text style={styles.btnText}>
-          <Icon name="plus" fill="darkslateblue" width={18} height={18}/>
+          <Icon name="plus" fill="darkslateblue" width={18} height={18} />
           Add Item
         </Text>
       </TouchableOpacity>
