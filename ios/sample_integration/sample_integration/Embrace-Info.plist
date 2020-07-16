@@ -8,5 +8,7 @@
 	<true/>
 	<key>STARTUP_AUTOEND_SECONDS</key>
 	<integer>5</integer>
+	<key>ENABLE_OS_LOG</key>
+	<true/>
 </dict>
 </plist>
