@@ -1,16 +1,10 @@
 import React, {useState} from 'react';
-import {View, StyleSheet, FlatList, Alert, SafeAreaView} from 'react-native';
+import {StyleSheet, FlatList, Alert, SafeAreaView} from 'react-native';
 
 import Header from './components/Header';
 import ListItem from './components/ListItem';
 import AddItem from './components/AddItem';
-import {
-  startMoment,
-  endMoment,
-  logMessage,
-  INFO,
-  logBreadcrumb,
-} from 'react-native-embrace';
+import {startMoment, endMoment, logBreadcrumb} from 'react-native-embrace';
 
 const App = () => {
   const [items, setItems] = useState([
@@ -43,13 +37,13 @@ const App = () => {
 
   const [checkedItems, checkedItemChange] = useState([]);
 
-  //EMBRACE HINT
+  // EMBRACE HINT:
   // Storing constants like moment or breadcrumb names make typos less likely.
   const editMoment = 'EditMoment';
 
-  const deleteItem = (id) => {
+  const deleteItem = (targetID) => {
     setItems((prevItems) => {
-      return prevItems.filter((item) => item.id !== id);
+      return prevItems.filter(({id}) => id !== targetID);
     });
   };
 
@@ -62,7 +56,7 @@ const App = () => {
     });
     // Flip edit status back to false
     // EMBRACE HINT:
-    // This is where we end our add item moment.  We wanted to measure this interaction as it is core to our user experience.
+    // This is where we end our edit item moment.  We wanted to measure this interaction as it is core to our user experience.
     // By measuring user interactions in this manner you can start to understand how app performance impacts your user journey.
     // Always make sure to end moments you start, Embrace considered any non-ended moment to be an abandonment by the user
     endMoment(editMoment);
@@ -75,12 +69,10 @@ const App = () => {
   };
 
   const addItem = (text) => {
-    //force crash
     // EMBRACE HINT:
     // As you can see from this project, Embrace is much more than just a simple crash tracker.  If you do want to try out
-    // Embrace's crash tracking capabilities, simply uncomment the line below and click the add button with the input field empty.
-    //  Ensure that you run your application on
-    // real hardware, without Xcode running, to ensure the crash is captured correctly.
+    // Embrace's crash tracking capabilities, simply uncomment the lines below and click the add button with the input field empty.
+    //  Make sure that your application is running in release mode with the debugger detached to ensure the crash is captured correctly.
     // see: https://embrace.io/docs/react-native/crash-reporting/for more information
 
     //EXAMPLE CRASH:
@@ -112,8 +104,8 @@ const App = () => {
   // capture old items ID and text when user clicks edit
   const editItem = (id, text) => {
     // EMBRACE HINT:
-    // Moments are a great way to measure the performance and abandonment of workflows within your application
-    // Here we are editing an item, we want to know how long it takes te user to finish this action.
+    // Moments are a great way to measure the performance and abandonment of workflows within your application.
+    //FIXME: change ex
     startMoment(editMoment);
     editItemDetailChange({
       id,
@@ -124,8 +116,8 @@ const App = () => {
 
   const itemChecked = (id, text) => {
     // EMBRACE HINT:
-    // Embrace has two options for logging events, breadcrumbs and logs.  This is an example of breadcrumb.
-    // Breadcrumbs are lightweight items that little overhead to your application.
+    // Embrace has two options for logging events: breadcrumbs and logs.  This is an example of breadcrumb.
+    // Breadcrumbs are lightweight logs that add little overhead to your application.
     // You can use them to add context to sessions.
 
     const isChecked = checkedItems.filter(
