@@ -42,6 +42,9 @@ const AddItem = ({addItem}) => {
   }, []);
 
   const setSessionItem = (value) => {
+    // EMBRACE HINT:
+    // Session properties are a great way to keep track of additional information about this session or this device.
+    // For example it could be useful to know which items got added in each session.
     addSessionProperty('Session item:', value, false);
   };
 
