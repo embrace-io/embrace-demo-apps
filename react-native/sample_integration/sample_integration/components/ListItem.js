@@ -26,15 +26,15 @@ const ListItem = ({
   useEffect(() => {
     // EMBRACE HINT:
     // Event logging is how you can ensure that events are available in alerts as they happen, rather than when sessions end.
-    // If you are tracking down a difficult bug, or trying to understand a complex interaction -- logging is an appropriate API to use
-    // For lighter weight tracking like navigation events, look into breadcrumbs.
+    // If you are tracking down a difficult bug, or trying to understand a complex interaction -- logging is an appropriate API to use.
+    // For lighter weight tracking like navigation events, use breadcrumbs.
     logMessage('ListItem Got updated:', WARNING, {item}, true);
     // When you use logging events, these are immediately sent to our servers and are meant to be the basis for alerting you to
     // real-time issues with your application in production.  As such, take care not to over-use logging events as they have a higher impact
     // on the performance of your app vs breadcrumbs.
     // Note that our log is a complex object, not a simple string.  By breaking out properties like this we can use their values to power
-    // our alerting, we can also search and filter on the property values -- we cannot do that if we only send strings.
-    // Taking a screenshot is way to see what the user was looking at yourself.  Consider the users privacy and the impact on performance
+    // our alerting. We can also search and filter on the property values -- we cannot do that if we only send strings.
+    // Taking a screenshot is a way to see what the user was looking at yourself.  Consider the users privacy and the impact on performance
     // when enabling this feature.
   }, [item]);
 
