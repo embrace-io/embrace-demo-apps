@@ -1,12 +1,35 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, FlatList, Alert, SafeAreaView} from 'react-native';
 
 import Header from './components/Header';
 import ListItem from './components/ListItem';
 import AddItem from './components/AddItem';
 import {startMoment, endMoment, logBreadcrumb} from 'react-native-embrace';
+import useConstructor from './util/custom_hooks';
 
 const App = () => {
+  // Flag true if user is currently editing an item
+  const [editStatus, editStatusChange] = useState(false);
+  // State to capture information about the item being edited
+  const [editItemDetail, editItemDetailChange] = useState({
+    id: null,
+    text: null,
+  });
+  const [checkedItems, checkedItemChange] = useState([]);
+
+  // EMBRACE HINT:
+  // Storing constants like moment or breadcrumb names make typos less likely.
+  const mountedMoment = 'App Mounted';
+
+  useConstructor(() => {
+    //This only happens ONCE and it happens BEFORE the initial render.
+
+    // EMBRACE HINT:
+    // Moments are a great way to measure the performance and abandonment of workflows within your application.
+    // We recommend to wrap non user interruptable flows with moments. For example, here we are measuring how long
+    // it takes this component to render.
+    startMoment(mountedMoment);
+  });
   const [items, setItems] = useState([
     {
       id: '1',
@@ -26,20 +49,15 @@ const App = () => {
     },
   ]);
 
-  // Flag true if user is currently editing an item
-  const [editStatus, editStatusChange] = useState(false);
+  useEffect(() => {
+    //This only happens ONCE. But it happens AFTER the initial render
 
-  // State to capture information about the item being edited
-  const [editItemDetail, editItemDetailChange] = useState({
-    id: null,
-    text: null,
+    // EMBRACE HINT:
+    // This is where we end our edit item moment.  We wanted to measure this interaction as it is core to our user experience.
+    // By measuring user interactions in this manner you can start to understand how app performance impacts your user journey.
+    // Always make sure to end moments you start, Embrace considered any non-ended moment to be an abandonment by the user
+    endMoment(mountedMoment);
   });
-
-  const [checkedItems, checkedItemChange] = useState([]);
-
-  // EMBRACE HINT:
-  // Storing constants like moment or breadcrumb names make typos less likely.
-  const editMoment = 'EditMoment';
 
   const deleteItem = (targetID) => {
     setItems((prevItems) => {
@@ -55,11 +73,6 @@ const App = () => {
       );
     });
     // Flip edit status back to false
-    // EMBRACE HINT:
-    // This is where we end our edit item moment.  We wanted to measure this interaction as it is core to our user experience.
-    // By measuring user interactions in this manner you can start to understand how app performance impacts your user journey.
-    // Always make sure to end moments you start, Embrace considered any non-ended moment to be an abandonment by the user
-    endMoment(editMoment);
     editStatusChange(!editStatus);
   };
 
@@ -103,10 +116,6 @@ const App = () => {
 
   // capture old items ID and text when user clicks edit
   const editItem = (id, text) => {
-    // EMBRACE HINT:
-    // Moments are a great way to measure the performance and abandonment of workflows within your application.
-    //FIXME: change ex
-    startMoment(editMoment);
     editItemDetailChange({
       id,
       text,
