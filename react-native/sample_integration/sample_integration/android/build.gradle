@@ -13,7 +13,7 @@ buildscript {
     }
     dependencies {
         classpath("com.android.tools.build:gradle:3.5.3")
-        //EMBRACE HINT:
+        // EMBRACE HINT:
         // The Embrace SDK is available on JCenter. Keep an eye for latests versions.
         classpath 'embrace-io:embrace-swazzler:4.4.0'
 

@@ -45,6 +45,8 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
+    // EMBRACE HINT:
+    // We need to pass the Embrace.AppFramework.REACT_NATIVE parameter in for the SDK to recognize the app as a React Native app.
       Embrace.getInstance().start(this, false, Embrace.AppFramework.REACT_NATIVE);
       SoLoader.init(this, /* native exopackage */ false);
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
