@@ -16,7 +16,7 @@ import {
 
 const AddItem = ({addItem}) => {
   const [text, setText] = useState('');
-  const addView = 'Add Item Component';
+  const displayName = 'AddItem';
   const onChange = (textValue) => {
     setText(textValue);
   };
@@ -28,17 +28,17 @@ const AddItem = ({addItem}) => {
     // By default, Embrace will track native views.
     // If you’d like to track when a React component is mounted and unmounted,
     //  you can do so with the startView and endView functions.
-    startView(addView);
+    startView(displayName);
 
     async () => {
       // EMBRACE HINT:
       // Session properties defined as permanent persist across app launch.
       //  This means you can read those properties back and use them for application logic.
-      // Notice that the getSessionProperties and addSessionProperty return promises
+      // Notice that the getSessionProperties and addSessionProperty return promises.
       const sessionProps = await getSessionProperties();
       console.log('getProperties -> sessionProps', sessionProps);
     };
-    endView(addView);
+    endView(displayName);
   }, []);
 
   const setSessionItem = (value) => {
