@@ -62,7 +62,7 @@ class MasterViewController: UITableViewController {
             // Taking a screenshot is way to see what the user was looking at yourself.  Consider the users privacy and the impact on performance
             // when enabling this feature.
             let properties = ["property_a": "value_a", "property_b": "value_b"]
-            Embrace.sharedInstance()?.logMessage("Loading not finished in time.", with: .error, properties: properties, takeScreenshot: true)
+            Embrace.sharedInstance().logMessage("Loading not finished in time.", with: .error, properties: properties, takeScreenshot: true)
         }
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
@@ -77,7 +77,7 @@ class MasterViewController: UITableViewController {
         // Note the waitingForReload boolean used later in cellForRowAt to end the moment
         // Always make sure to end moments you start, Embrace considered any non-ended moment to be an abandonment by the user
         waitingForReload = true
-        Embrace.sharedInstance()?.startMoment(withName: EmbraceMomentConstants.addItemMomentName)
+        Embrace.sharedInstance().startMoment(withName: EmbraceMomentConstants.addItemMomentName)
         objects.insert(NSDate(), at: 0)
         let indexPath = IndexPath(row: 0, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
@@ -95,7 +95,7 @@ class MasterViewController: UITableViewController {
                 // Breadcrumbs are lightweight items that little overhead to your application
                 // Use them to track branching and state changes that are relevant to the session but not urgent for alerting.
                 let msg = String(format: "Navigating to detail page for: \(object)")
-                Embrace.sharedInstance()?.logBreadcrumb(withMessage: msg)
+                Embrace.sharedInstance().logBreadcrumb(withMessage: msg)
                 controller.detailItem = object
                 controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
                 controller.navigationItem.leftItemsSupplementBackButton = true
@@ -108,7 +108,7 @@ class MasterViewController: UITableViewController {
 
     override func setEditing(_ editing: Bool, animated: Bool) {
         let msg = String(format: "Master table view editing mode did change to: \(editing), animated: \(animated)")
-        Embrace.sharedInstance()?.logBreadcrumb(withMessage: msg)
+        Embrace.sharedInstance().logBreadcrumb(withMessage: msg)
         super.setEditing(editing, animated: animated);
     }
     
@@ -129,7 +129,7 @@ class MasterViewController: UITableViewController {
         // By measuring user interactions in this manner you can start to understand how app performance impacts your user journey.
         if (waitingForReload) {
             waitingForReload = false
-            Embrace.sharedInstance()?.endMoment(withName: EmbraceMomentConstants.addItemMomentName)
+            Embrace.sharedInstance().endMoment(withName: EmbraceMomentConstants.addItemMomentName)
         }
         return cell
     }
@@ -147,13 +147,13 @@ class MasterViewController: UITableViewController {
             // to understand the performance of this operation as our users will do it often.
             // Notice how we're wrapping the call with performBatchUpdates.  This is because we want to measure to true
             // performance of this operation so we need a callback for when it completes.
-            Embrace.sharedInstance()?.logBreadcrumb(withMessage: "starting remove item moment");
-            Embrace.sharedInstance()?.startMoment(withName: EmbraceMomentConstants.removeItemMomentName)
+            Embrace.sharedInstance().logBreadcrumb(withMessage: "starting remove item moment");
+            Embrace.sharedInstance().startMoment(withName: EmbraceMomentConstants.removeItemMomentName)
             tableView.performBatchUpdates({
                 tableView.deleteRows(at: [indexPath], with: .fade)
             }, completion: { ( _ ) in
-                Embrace.sharedInstance()?.logBreadcrumb(withMessage: "ending remove item moment");
-                Embrace.sharedInstance()?.endMoment(withName: EmbraceMomentConstants.removeItemMomentName)
+                Embrace.sharedInstance().logBreadcrumb(withMessage: "ending remove item moment");
+                Embrace.sharedInstance().endMoment(withName: EmbraceMomentConstants.removeItemMomentName)
             })
         } else if editingStyle == .insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.

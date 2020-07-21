@@ -7,10 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-
-FOUNDATION_EXPORT double EmbraceVersionNumber;
-FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
-
 #import "EmbraceConfig.h"
 #import "EMBConstants.h"
 #import "EMBCustomFlow.h"
@@ -20,7 +16,15 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
 #import "EMBSubscriptionPurchaseFlow.h"
 #import "RNEmbrace.h"
 
-// Public Embrace API for use by developers
+/**
+ Project version number for the Embrace framework.
+ */
+FOUNDATION_EXPORT double EmbraceVersionNumber;
+
+/**
+ Project version string for the Embrace framework.
+ */
+FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
 
 /**
  The EMBDelegate is used to notify the application of updates from the Embrace.io SDK. Currently the only update that will be
@@ -40,17 +44,20 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
 
 @end
 
+/**
+ Entry point for Embrace SDK.
+ */
 @interface Embrace : NSObject
 
 /**
  Optional delegate property that can be set to receive callbacks about the Embrace.io SDK's operations
  */
-@property (nonatomic, weak) id<EmbraceDelegate> delegate;
+@property (nonatomic, weak, nullable) id<EmbraceDelegate> delegate;
 
 /**
  Returns the shared `Embrace` singleton object.
  */
-+ (instancetype)sharedInstance;
++ (nonnull instancetype)sharedInstance;
 
 /**
  Performs the initial setup of the Embrace SDK with the default config file if present
@@ -62,14 +69,14 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
  
  @param launchOptions The launchOptions as passed to [UIApplicationDelegate application:didFinishLaunchingWithOptions:].
  */
-- (void)startWithLaunchOptions:(NSDictionary *)launchOptions;
+- (void)startWithLaunchOptions:(nullable NSDictionary *)launchOptions;
 
 /**
  Performs the initial setup of the Embrace SDK with a custom EmbraceConfig.
  
  @param config The Embrace application object used to configure the service.
  */
-- (void)startWithConfig:(EmbraceConfig *)config;
+- (void)startWithConfig:(nonnull EmbraceConfig *)config;
 
 /**
  Performs the initial setup of the Embrace SDK with a custom EmbraceConfig.
@@ -78,7 +85,8 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
  
  @param launchOptions The launchOptions as passed to [UIApplicationDelegate application:didFinishLaunchingWithOptions:].
  */
-- (void)startWithConfig:(EmbraceConfig *)config launchOptions:(NSDictionary *)launchOptions;
+- (void)startWithConfig:(nonnull EmbraceConfig *)config
+          launchOptions:(nullable NSDictionary<UIApplicationLaunchOptionsKey, id> *)launchOptions;
 
 /**
  Performs the initial setup of the Embrace SDK with the provided API key.
@@ -87,7 +95,7 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
  
  @param apiKey The unique Embrace API key that identifies your application.
  */
-- (void)startWithKey:(NSString *)apiKey;
+- (void)startWithKey:(nonnull NSString *)apiKey;
 
 /**
  Performs the initial setup of the Embrace SDK with the provided API key.
@@ -98,7 +106,8 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
  
  @param launchOptions The launchOptions as passed to [UIApplicationDelegate application:didFinishLaunchingWithOptions:].
  */
-- (void)startWithKey:(NSString *)apiKey launchOptions:(NSDictionary *)launchOptions;
+- (void)startWithKey:(nonnull NSString *)apiKey
+       launchOptions:(nullable NSDictionary<UIApplicationLaunchOptionsKey, id> *)launchOptions;
 
 /**
  Performs the initial setup of the Embrace SDK with the provided API key.
@@ -111,7 +120,9 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
 
  @param framework The framework used by the app, e.g. EMBAppFrameworkReactNative.
  */
-- (void)startWithKey:(NSString *)apiKey launchOptions:(NSDictionary *)launchOptions framework:(EMBAppFramework)framework;
+- (void)startWithKey:(nonnull NSString *)apiKey
+       launchOptions:(nullable NSDictionary<UIApplicationLaunchOptionsKey, id> *)launchOptions
+           framework:(EMBAppFramework)framework;
 
 /**
  Manually forces the end of the current session and starts a new session.
@@ -140,7 +151,7 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
  Marks the end of the "App Startup" event with optional properties added
  @param properties An optional dictionary containing metadata about the moment to be recorded (limited to 10 keys).
  */
-- (void)endAppStartupWithProperties:(EMBProperties *)properties;
+- (void)endAppStartupWithProperties:(nullable EMBProperties *)properties;
 
 /**
  Starts recording data for an app moment with the provided name.
@@ -149,8 +160,16 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
  
  @param name The name used to identify the app moment
  */
-- (void)beginEventWithName:(NSString *)name DEPRECATED_MSG_ATTRIBUTE("Please replace calls to start app moments with methods of the form startMomentWithName:");
-- (void)startMomentWithName:(NSString *)name;
+- (void)beginEventWithName:(nonnull NSString *)name DEPRECATED_MSG_ATTRIBUTE("Please replace calls to start app moments with methods of the form startMomentWithName:");
+
+/**
+ Starts recording data for an app moment with the provided name.
+
+ If another app moment with the provided name is in progress, it will be overwritten.
+
+ @param name The name used to identify the app moment
+*/
+- (void)startMomentWithName:(nonnull NSString *)name;
 
 /**
  Starts recording data for an app moment with the provided name and identifier.
@@ -162,8 +181,21 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
  @param name The name used to identify the moment.
  @param identifier An identifier that is combined with the name to create a unique key for the moment.
  */
-- (void)beginEventWithName:(NSString *)name identifier:(NSString *)identifier DEPRECATED_MSG_ATTRIBUTE("Please replace calls to start app moments with methods of the form startMomentWithName:identifier:");
-- (void)startMomentWithName:(NSString *)name identifier:(NSString *)identifier;
+- (void)beginEventWithName:(nonnull NSString *)name
+                identifier:(nullable NSString *)identifier DEPRECATED_MSG_ATTRIBUTE("Please replace calls to start app moments with methods of the form startMomentWithName:identifier:");
+
+/**
+ Starts recording data for an app moment with the provided name and identifier.
+
+ Identifiers can be used to separately log data for different instances of a given moment, e.g. an image download.
+ All moments will be aggregated by name—the identifier is purely for avoiding naming collisions.
+ A start event with a given name, identifier pair will overwrite any existing app moments with the same name and identifier.
+
+ @param name The name used to identify the moment.
+ @param identifier An identifier that is combined with the name to create a unique key for the moment.
+ */
+- (void)startMomentWithName:(nonnull NSString *)name
+                 identifier:(nullable NSString *)identifier;
 
 /**
  Starts recording data for an app moment with the provided name, optional identifier, and option to take a screenshot.
@@ -175,8 +207,23 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
  @param identifier An identifier that is combined with the name to create a unique key for the moment (can be nil).
  @param allowScreenshot A flag for whether to enable screenshot functionality if the moment is late (defaults to YES).
  */
-- (void)beginEventWithName:(NSString *)name identifier:(NSString *)identifier allowScreenshot:(BOOL)allowScreenshot DEPRECATED_MSG_ATTRIBUTE("Please replace calls to start app moments with methods of the form startMomentWithName:identifier:allowScreenshot:");
-- (void)startMomentWithName:(NSString *)name identifier:(NSString *)identifier allowScreenshot:(BOOL)allowScreenshot;
+- (void)beginEventWithName:(nonnull NSString *)name
+                identifier:(nullable NSString *)identifier
+           allowScreenshot:(BOOL)allowScreenshot DEPRECATED_MSG_ATTRIBUTE("Please replace calls to start app moments with methods of the form startMomentWithName:identifier:allowScreenshot:");
+
+/**
+ Starts recording data for an app moment with the provided name, optional identifier, and option to take a screenshot.
+ Screenshots will be taken if the SDK detects that the moment is late (taking longer than it should).
+ Note: screenshots will be rate-limited, so if two moments trigger screenshots within 1 second of each other, only
+ one screenshot will be taken.
+
+ @param name The name used to identify the moment.
+ @param identifier An identifier that is combined with the name to create a unique key for the moment (can be nil).
+ @param allowScreenshot A flag for whether to enable screenshot functionality if the moment is late (defaults to YES).
+ */
+- (void)startMomentWithName:(nonnull NSString *)name
+                 identifier:(nullable NSString *)identifier
+            allowScreenshot:(BOOL)allowScreenshot;
 
 /**
  Starts recording data for an app moment with the provided name, optional identifier, and optional key/value metadata
@@ -185,7 +232,9 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
  @param identifier An identifier that is combined with the name to create a unique key for the moment (can be nil).
  @param properties An optional dictionary containing metadata about the moment to be recorded (limited to 10 keys).
  */
-- (void)startMomentWithName:(NSString *)name identifier:(NSString *)identifier properties:(EMBProperties *)properties;
+- (void)startMomentWithName:(nonnull NSString *)name
+                 identifier:(nullable NSString *)identifier
+                 properties:(nullable EMBProperties *)properties;
 
 /**
  Starts recording data for an app moment with the provided name, optional identifier, screenshot flag, and optional key/value metadata
@@ -195,8 +244,23 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
  @param allowScreenshot A flag for whether to take a screenshot if the moment is late (defaults to YES).
  @param properties An optional dictionary containing metadata about the moment to be recorded (limited to 10 keys).
  */
-- (void)beginEventWithName:(NSString *)name identifier:(NSString *)identifier allowScreenshot:(BOOL)allowScreenshot properties:(EMBProperties *)properties DEPRECATED_MSG_ATTRIBUTE("Please replace calls to start app moments with methods of the form startMomentWithName:identifier:allowScreenshot:properties:");
-- (void)startMomentWithName:(NSString *)name identifier:(NSString *)identifier allowScreenshot:(BOOL)allowScreenshot properties:(EMBProperties *)properties;
+- (void)beginEventWithName:(nonnull NSString *)name
+                identifier:(nullable NSString *)identifier
+           allowScreenshot:(BOOL)allowScreenshot
+                properties:(nullable EMBProperties *)properties DEPRECATED_MSG_ATTRIBUTE("Please replace calls to start app moments with methods of the form startMomentWithName:identifier:allowScreenshot:properties:");
+
+/**
+ Starts recording data for an app moment with the provided name, optional identifier, screenshot flag, and optional key/value metadata
+ 
+ @param name The name used to identify the moment.
+ @param identifier An identifier that is combined with the name to create a unique key for the moment (can be nil).
+ @param allowScreenshot A flag for whether to take a screenshot if the moment is late (defaults to YES).
+ @param properties An optional dictionary containing metadata about the moment to be recorded (limited to 10 keys).
+ */
+- (void)startMomentWithName:(nonnull NSString *)name
+                 identifier:(nullable NSString *)identifier
+            allowScreenshot:(BOOL)allowScreenshot
+                 properties:(nullable EMBProperties *)properties;
 
 /**
  Stops recording data for an app moment with the provided name.
@@ -207,8 +271,18 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
  
  @param name The name used to identify the moment.
  */
-- (void)endEventWithName:(NSString *)name DEPRECATED_MSG_ATTRIBUTE("Please replace calls to end app moments with methods of the form endMomentWithName:");
-- (void)endMomentWithName:(NSString *)name;
+- (void)endEventWithName:(nonnull NSString *)name DEPRECATED_MSG_ATTRIBUTE("Please replace calls to end app moments with methods of the form endMomentWithName:");
+
+/**
+ Stops recording data for an app moment with the provided name.
+ 
+ This marks the moment as "completed."
+ If no moment is found with the provided name (and an empty identifier), this call will be ignored.
+ Additionally, if an app moment was started with a name and identifier, the same identifier must be used to end it.
+ 
+ @param name The name used to identify the moment.
+ */
+- (void)endMomentWithName:(nonnull NSString *)name;
 
 /**
  Stops recording data for an app moment with the provided name and adds properties to the moment.
@@ -220,8 +294,8 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
  @param name The name used to identify the moment.
  @param properties An optional dictionary containing metadata about the moment to be recorded (limited to 10 keys).
  */
-- (void)endMomentWithName:(NSString *)name properties:(EMBProperties *)properties;
-
+- (void)endMomentWithName:(nonnull NSString *)name
+               properties:(nullable EMBProperties *)properties;
 
 /**
  Stops recording data for an app moment with the provided name and identifier.
@@ -232,9 +306,20 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
  @param name The name used to identify the moment.
  @param identifier An identifier that is combined with the name to uniquely identify the moment.
  */
-- (void)endEventWithName:(NSString *)name identifier:(NSString *)identifier DEPRECATED_MSG_ATTRIBUTE("Please replace calls to end app moments with methods of the form endMomentWithName:identifier:");
-- (void)endMomentWithName:(NSString *)name identifier:(NSString *)identifier;
+- (void)endEventWithName:(nonnull NSString *)name
+              identifier:(nullable NSString *)identifier DEPRECATED_MSG_ATTRIBUTE("Please replace calls to end app moments with methods of the form endMomentWithName:identifier:");
 
+/**
+ Stops recording data for an app moment with the provided name and identifier.
+ 
+ The moment that has the given name, identifier pair will be marked as "completed."
+ If no moment is found with the given name AND identifier, this call will be ignored.
+ 
+ @param name The name used to identify the moment.
+ @param identifier An identifier that is combined with the name to uniquely identify the moment.
+ */
+- (void)endMomentWithName:(nonnull NSString *)name
+               identifier:(nullable NSString *)identifier;
 
 /**
  Stops recording data for an app moment with the provided name and identifier, and adds properties to the moment.
@@ -246,7 +331,9 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
  @param identifier An identifier that is combined with the name to uniquely identify the moment.
  @param properties An optional dictionary containing metadata about the moment to be recorded (limited to 10 keys).
  */
-- (void)endMomentWithName:(NSString *)name identifier:(NSString *)identifier properties:(EMBProperties *)properties;
+- (void)endMomentWithName:(nonnull NSString *)name
+               identifier:(nullable NSString *)identifier
+               properties:(nullable EMBProperties *)properties;
 
 /**
  Annotates the session with a new property.  Use this to track permanent and ephemeral features of the session.
@@ -261,14 +348,16 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
  
  @return A boolean indicating whether the property was added or not, see console log for details
  */
-- (bool)addSessionProperty:(NSString *)value withKey:(NSString *)key permanent:(BOOL)permanent;
+- (bool)addSessionProperty:(nonnull NSString *)value
+                   withKey:(nonnull NSString *)key
+                 permanent:(BOOL)permanent;
 
 /**
  Removes a property from the session.  If that property was permanent then it is removed from all future sessions as well.
  
  @param key The key for the property you wish to remove
  */
-- (void)removeSessionPropertyWithKey:(NSString *)key;
+- (void)removeSessionPropertyWithKey:(nonnull NSString *)key;
 
 /**
  Get a read-only representation of the currently set session properties.  You can query and read from this representation however setting values in this object will not modify the actual properties in the session.
@@ -276,7 +365,7 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
  
  Properties are key-value pairs of NSString * objects.
  */
-- (NSDictionary *)getSessionProperties;
+- (nonnull NSDictionary *)getSessionProperties;
 
 /** Embrace ships with automatic view capturing enabled.  In this mode the SDK attempts to track and annotate all your view
  Presentations and logs them in the session.  In complex apps, or apps with unconvential UI (spritekit, swiftui, react) automatic capture
@@ -292,7 +381,7 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
  @param name The name for this view state
  @return a boolean indicating whether the operation was successful or not (see console log for reasoning)
  */
-- (bool)startViewWithName:(NSString *)name;
+- (bool)startViewWithName:(nonnull NSString *)name;
 
 /**
  @see startViewWithName for full discussion of the manual view annotation system
@@ -302,7 +391,7 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
  @param name The name for this view state
  @return a boolean indicating whether the operation was successful or not (see console log for reasoning)
  */
-- (bool)endViewWithName:(NSString *)name;
+- (bool)endViewWithName:(nonnull NSString *)name;
 
 /**
  Logs an event in your application for aggregation and debugging on the Embrace.io dashboard.
@@ -312,7 +401,8 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
  @param name The name of the message, which is how it will show up on the dashboard
  @param severity Will flag the message as one of info, warning, or error for filtering on the dashboard
  */
-- (void)logMessage:(NSString *)name withSeverity:(EMBSeverity)severity;
+- (void)logMessage:(nonnull NSString *)name
+      withSeverity:(EMBSeverity)severity;
 
 /**
  Logs an event in your application for aggregation and debugging on the Embrace.io dashboard
@@ -322,7 +412,9 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
  @param severity Will flag the message as one of info, warning, or error for filtering on the dashboard
  @param properties An optional dictionary of up to 10 key/value pairs
  */
-- (void)logMessage:(NSString *)name withSeverity:(EMBSeverity)severity properties:(EMBProperties *)properties;
+- (void)logMessage:(nonnull NSString *)name
+      withSeverity:(EMBSeverity)severity
+        properties:(nullable EMBProperties *)properties;
 
 /**
  Logs an event in your application for aggregation and debugging on the Embrace.io dashboard
@@ -333,7 +425,10 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
  @param properties An optional dictionary of up to 10 key/value pairs
  @param takeScreenshot A flag for whether the SDK should take a screenshot of the application window to display on the dashboard
  */
-- (void)logMessage:(NSString *)name withSeverity:(EMBSeverity)severity properties:(EMBProperties *)properties takeScreenshot:(BOOL)takeScreenshot;
+- (void)logMessage:(nonnull NSString *)name
+      withSeverity:(EMBSeverity)severity
+        properties:(nullable EMBProperties *)properties
+    takeScreenshot:(BOOL)takeScreenshot;
 
 /**
  Logs an informative message to the Embrace.io API for aggregation and viewing on the dashboard.
@@ -341,7 +436,8 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
  @param message The message used to find the log later, which is how it will be aggregated on the web dashboard
  @param properties An optional dictionary of custom key/value properties to be sent with the message
  */
-- (void)logInfoMessage:(NSString *)message properties:(EMBProperties *)properties DEPRECATED_MSG_ATTRIBUTE("Please replace calls to log info messages with methods of the form logMessage:withSeverity:");
+- (void)logInfoMessage:(nonnull NSString *)message
+            properties:(nullable EMBProperties *)properties DEPRECATED_MSG_ATTRIBUTE("Please replace calls to log info messages with methods of the form logMessage:withSeverity:");
 
 /**
  Logs a warning message to the Embrace.io API for aggregation and viewing on the dashboard. Unlike info messages,
@@ -351,7 +447,9 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
  @param screenshot A flag for whether to take a screenshot or not.
  @param properties An optional dictionary of custom key/value properties to be sent with the warning log.
  */
-- (void)logWarningMessage:(NSString *)message screenshot:(BOOL)screenshot properties:(EMBProperties *)properties DEPRECATED_MSG_ATTRIBUTE("Please replace calls to log warning messages with methods of the form logMessage:withSeverity:");
+- (void)logWarningMessage:(nonnull NSString *)message
+               screenshot:(BOOL)screenshot
+               properties:(nullable EMBProperties *)properties DEPRECATED_MSG_ATTRIBUTE("Please replace calls to log warning messages with methods of the form logMessage:withSeverity:");
 
 /**
  Logs an error message to the Embrace.io API for aggregation and viewing on the dashboard. Unlike info messages,
@@ -361,7 +459,9 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
  @param screenshot A flag for whether to take a screenshot or not.
  @param properties An optional dictionary of custom key/value properties to be sent with the error log.
  */
-- (void)logErrorMessage:(NSString *)message screenshot:(BOOL)screenshot properties:(EMBProperties *)properties DEPRECATED_MSG_ATTRIBUTE("Please replace calls to log error messages with methods of the form logMessage:withSeverity:");
+- (void)logErrorMessage:(nonnull NSString *)message
+             screenshot:(BOOL)screenshot
+             properties:(nullable EMBProperties *)properties DEPRECATED_MSG_ATTRIBUTE("Please replace calls to log error messages with methods of the form logMessage:withSeverity:");
 
 /**
  Logs an Error or NSError object to the Embrace.io API for aggregation on the dashboard. These errors will be treated similarly to
@@ -373,7 +473,9 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
  @param screenshot A flag for whether to take a screenshot or not.
  @param properties An optional dictionary of custom key/value properties to be sent with the error log.
  */
-- (void)logHandledError:(NSError *)error screenshot:(BOOL)screenshot properties:(EMBProperties *)properties;
+- (void)logHandledError:(nonnull NSError *)error
+             screenshot:(BOOL)screenshot
+             properties:(nullable EMBProperties *)properties;
 
 /**
  Logs a custom message within this session for the Embrace dashboard to surface on the Session Timeline and within
@@ -385,21 +487,21 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
  
  @param message The message that will be displayed within the session's Activity Log on the dashboard.
  */
-- (void)logBreadcrumbWithMessage:(NSString *)message;
+- (void)logBreadcrumbWithMessage:(nonnull NSString *)message;
 
 /**
  Get the user identifier assigned to the device by Embrace
 
  @return A device identifier created by Embrace
  */
-- (NSString *)getDeviceId;
+- (nullable NSString *)getDeviceId;
 
 /**
- Associates the current app user with an internal identifier (e.g. your system's uid) to be made searchable at a later date.
+ Associates the current app user with an internal identifier (e.g. your system's uid) to be made searchable in the dashboard.
  
  @param userId An internal identifier for the given user.
  */
-- (void)setUserIdentifier:(NSString *)userId;
+- (void)setUserIdentifier:(nonnull NSString *)userId;
 
 /**
  Resets the internal identifier for the current app user.
@@ -407,11 +509,11 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
 - (void)clearUserIdentifier;
 
 /**
- Associates the current app user with a username to be made searchable at a later date.
+ Associates the current app user with a username to be made searchable in the dashboard.
  
  @param username The current app user's associated username.
  */
-- (void)setUsername:(NSString *)username;
+- (void)setUsername:(nonnull NSString *)username;
 
 /**
  Removes the username associated with the current app user.
@@ -419,11 +521,11 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
 - (void)clearUsername;
 
 /**
- Associates the current app user with an email address to be made searchable at a later date.
+ Associates the current app user with an email address to be made searchable in the dashboard.
  
  @param email The current app user's associated email address.
  */
-- (void)setUserEmail:(NSString *)email;
+- (void)setUserEmail:(nonnull NSString *)email;
 
 /**
  Removes the email address associated with the current app user.
@@ -445,14 +547,14 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
 /**
  Sets a custom persona for the current app user.
  
- This accepts various custom values — use whichever is applicable to your app.
+ Accepts string values to help you categorize and understand your users
  */
-- (void)setUserPersona:(NSString *)persona;
+- (void)setUserPersona:(nonnull NSString *)persona;
 
 /**
  Removes the given custom persona for the current app user.
  */
-- (void)clearUserPersona:(NSString *)persona;
+- (void)clearUserPersona:(nonnull NSString *)persona;
 
 /**
  Removes all custom personas for the current app user.
@@ -465,12 +567,13 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
 
  @param request An EMBNetworkRequest with at least the following set: url, method, start time, end time, and either status code or error.
  */
-- (void)logNetworkRequest:(EMBNetworkRequest *)request;
+- (void)logNetworkRequest:(nonnull EMBNetworkRequest *)request;
 
 /**
  Logs enhanced metrics for a given URLSessionTask
  */
-- (void)logURLSessionTaskMetrics:(NSURLSessionTaskMetrics *)metrics forURLSessionTask:(NSURLSessionTask *)task DEPRECATED_MSG_ATTRIBUTE("NSURLSessionTaskMetrics interactions are now recorded automatically by the SDK. This method will be removed in future versions.") API_AVAILABLE(ios(10.0));
+- (void)logURLSessionTaskMetrics:(nullable NSURLSessionTaskMetrics *)metrics
+               forURLSessionTask:(nullable NSURLSessionTask *)task DEPRECATED_MSG_ATTRIBUTE("NSURLSessionTaskMetrics interactions are now recorded automatically by the SDK. This method will be removed in future versions.") API_AVAILABLE(ios(10.0));
 
 /**
  DEPRECATED
@@ -480,7 +583,7 @@ FOUNDATION_EXPORT const unsigned char EmbraceVersionString[];
  
  @param request The NSURLRequest whose performance you'd like to instrument.
  */
-- (void)logWebViewBeganRequest:(NSURLRequest *)request DEPRECATED_MSG_ATTRIBUTE("WKWebView interactions are now recorded automatically by the SDK. This method will be removed in future versions.");
+- (void)logWebViewBeganRequest:(nullable NSURLRequest *)request DEPRECATED_MSG_ATTRIBUTE("WKWebView interactions are now recorded automatically by the SDK. This method will be removed in future versions.");
 
 /**
  Cause a crash. Use this for test purposes only

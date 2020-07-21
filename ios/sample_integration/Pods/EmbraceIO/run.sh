@@ -158,10 +158,10 @@ function upload() {
             if [ -z "$dsym_full_path" ] ; then
                 continue
             fi
-            dsym_args="$dsym_args \"$dsym_full_path\""
+            dsym_args="$dsym_args --dsym \"$dsym_full_path\""
         done
         IFS=$ORIG_IFS
-        run "\"$DIR\"/upload --app $EMBRACE_ID --token $EMBRACE_TOKEN --dsym $dsym_args"
+        run "\"$DIR\"/upload --app $EMBRACE_ID --token $EMBRACE_TOKEN $dsym_args"
     fi
 }
 

@@ -13,6 +13,7 @@ import UIKit
 // Additionally open the 'Embrace-Info.plist' file and fill in your own API_KEY
 // Make sure to look at the 'Embrace Symbol Upload' build phase to learn about dsyms and symbolication
 import Embrace
+import LocalFrameworkDependency
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // EMBRACE HINT:
         // Embrace can use either objective-c or swift style logging.  To enable swift style logging set this flag to true
         // This can be done before calling start to ensure all logging is in the the clean format
-        Embrace.sharedInstance()?.setCleanLogsEnabled(true)
+        Embrace.sharedInstance().setCleanLogsEnabled(true)
         
         // EMBRACE HINT:
         // Always initialize Embrace as early as possible and in-line with the launch methods your application is using
@@ -34,31 +35,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Note: If you want to also use other reporting system such as Crashlytics, that's ok!  Just make sure to initialize Embrace
         // first so we can ensure our compatibility with Crashlytics.  Also set 'CRASH_REPORT_ENABLED' to 'NO' in Embrace-Info.plist if
         // you want to use a separate crash reporting system.
-        Embrace.sharedInstance()?.start(launchOptions: launchOptions)
+        Embrace.sharedInstance().start(launchOptions: launchOptions)
+        
+        let localMain = LocalFrameworkMain()
+        print("result = \(localMain.calculateSomething(78, y: 32))");
         
         // EMBRACE HINT:
         // Always remember to end the startup moment.  This is the best way to measure app launch performance and abandonment.
         // Make sure to call this function when your actual app launch is finished, so if you are loading UI or other data wait
         // to call this until you are finished.
-        Embrace.sharedInstance()?.endAppStartup();
+        Embrace.sharedInstance().endAppStartup();
         
         // EMBRACE HINT:
         // Embrace's platform is built around user sessions.  Finding your users when they have a problem requires that Embrace knows some
         // unique information about your user.  We recommend sharing an anonymized version of your internal user id.  This way your
         // users will appear in searches when you look, while Embrace will not be able to link sessions back to specific users -- only you can.
-        Embrace.sharedInstance()?.setUserIdentifier("internal_user_id_1234");
+        Embrace.sharedInstance().setUserIdentifier("internal_user_id_1234");
         
         // EMBRACE HINT:
         // Session properties are a great way to keep track of additional information about this session or this device.  For example if your
         // application runs on kiosk hardware in retail stores, you could add the store id as a permanent property.  Now you can filter and
         // search based on your deployed locations.
         // In this example we're tracking the way the application was launched, we want to know which sessions are the result of a push notification.
-        Embrace.sharedInstance()?.addSessionProperty("normal", withKey: "launch type", permanent: false)
+        Embrace.sharedInstance().addSessionProperty("normal", withKey: "launch type", permanent: false)
         
         // EMBRACE HINT:
         // Session properties defined as permanent persist across app launch.  This means you can read those properties back and use them for
         // application logic.
-        print("session properties: \(String(describing: Embrace.sharedInstance()?.getSessionProperties()))")
+        print("session properties: \(String(describing: Embrace.sharedInstance().getSessionProperties()))")
         
         // EMBRACE HINT:
         // As you can see from this project, Embrace is much more than just a simple crash tracker.  If you do want to try out
@@ -77,7 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // EMBRACE HINT:
         // Here we set the 'launch type' session property to notification since we now know this is a notification launch.
         // properties with the same key overwrite each other.
-        Embrace.sharedInstance()?.addSessionProperty("notification", withKey: "launch type", permanent: false)
+        Embrace.sharedInstance().addSessionProperty("notification", withKey: "launch type", permanent: false)
         completionHandler(.noData)
     }
 

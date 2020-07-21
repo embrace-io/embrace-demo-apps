@@ -7,6 +7,7 @@
 //
 
 #import "EMBCustomFlow.h"
+#import "EMBConstants.h"
 
 /**
  This class is responsible for tracking app performance during registration flows.
@@ -34,7 +35,10 @@
 
  @return True if the operation was successful; false otherwise.
  */
-- (BOOL)registrationStartWithId:(NSString * _Nullable)userId username:(NSString * _Nullable)username email:(NSString * _Nullable)email properties:(NSDictionary * _Nullable)properties;
+- (BOOL)registrationStartWithId:(nullable NSString *)userId
+                       username:(nullable NSString *)username
+                          email:(nullable NSString *)email
+                     properties:(nullable EMBProperties *)properties;
 
 /**
  Starts a registration moment.
@@ -51,7 +55,8 @@
 
  @return True if the operation was successful; false otherwise.
  */
-- (BOOL)registrationStartWithSource:(NSString * _Nullable)source properties:(NSDictionary * _Nullable)properties;
+- (BOOL)registrationStartWithSource:(nullable NSString *)source
+                         properties:(nullable EMBProperties *)properties;
 
 /**
  Ends the registration moment and generates an info log message that indicates that the registration completed.
@@ -83,7 +88,7 @@
 
  @return True if the operation was successful; false otherwise.
  */
-- (BOOL)registrationCompleteWithProperties:(NSDictionary * _Nullable)properties;
+- (BOOL)registrationCompleteWithProperties:(nullable EMBProperties *)properties;
 
 /**
  Ends the registration moment and generates an info log message that indicates that the registration completed.
@@ -120,7 +125,8 @@
 
  @return True if the operation was successful; false otherwise.
  */
-- (BOOL)registrationCompleteAsPayer:(BOOL)isPayer properties:(NSDictionary * _Nullable)properties;
+- (BOOL)registrationCompleteAsPayer:(BOOL)isPayer
+                         properties:(nullable EMBProperties *)properties;
 
 /**
  Ends the registration moment and generates a log error message that indicates that the registration failed.
@@ -132,7 +138,7 @@
 
  @return True if the operation was successful; false otherwise.
  */
-- (BOOL)registrationFailWithMessage:(NSString * _Nullable)message;
+- (BOOL)registrationFailWithMessage:(nullable NSString *)message;
 
 /**
  Ends the registration moment and generates a log error message that indicates that the registration failed.
@@ -147,6 +153,7 @@
 
  @return True if the operation was successful; false otherwise.
  */
-- (BOOL)registrationFailWithMessage:(NSString * _Nullable)message properties:(NSDictionary * _Nullable)properties;
+- (BOOL)registrationFailWithMessage:(nullable NSString *)message
+                         properties:(nullable EMBProperties *)properties;
 
 @end

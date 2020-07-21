@@ -7,6 +7,7 @@
 //
 
 #import "EMBCustomFlow.h"
+#import "EMBConstants.h"
 
 /**
  This class is responsible for tracking app performance during subscription purchase flows.
@@ -37,7 +38,11 @@
 
  @return True if the operation was successful; false otherwise.
  */
-- (NSString * _Nonnull)subscriptionPurchaseStartWithOrderId:(NSString * _Nullable)orderId subscriptionType:(NSString * _Nullable)subscriptionType amount:(NSNumber * _Nullable)amount paymentType:(NSString * _Nullable)paymentType properties:(NSDictionary * _Nullable)properties;
+- (nonnull NSString *)subscriptionPurchaseStartWithOrderId:(nullable NSString *)orderId
+                                          subscriptionType:(nullable NSString *)subscriptionType
+                                                    amount:(nullable NSNumber *)amount
+                                               paymentType:(nullable NSString *)paymentType
+                                                properties:(nullable EMBProperties *)properties;
 
 /**
  Ends the subscription purchase moment and generates an info log message that indicates that the subscription
@@ -61,7 +66,7 @@
 
  @return True if the operation was successful; false otherwise.
  */
-- (BOOL)subscriptionPurchaseCompleteWithProperties:(NSDictionary * _Nullable)properties;
+- (BOOL)subscriptionPurchaseCompleteWithProperties:(nullable EMBProperties *)properties;
 
 /**
  Ends the subscription purchase moment and generates an error log message that indicates that the subscription
@@ -74,7 +79,7 @@
 
  @return True if the operation was successful; false otherwise.
  */
-- (BOOL)subscriptionPurchaseFailWithMessage:(NSString * _Nullable)message;
+- (BOOL)subscriptionPurchaseFailWithMessage:(nullable NSString *)message;
 
 /**
  Ends the subscription purchase moment and generates an error log message that indicates that the subscription
@@ -90,6 +95,7 @@
 
  @return True if the operation was successful; false otherwise.
  */
-- (BOOL)subscriptionPurchaseFailWithMessage:(NSString * _Nullable)message properties:(NSDictionary * _Nullable)properties;
+- (BOOL)subscriptionPurchaseFailWithMessage:(nullable NSString *)message
+                                 properties:(nullable EMBProperties *)properties;
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "EMBConstants.h"
 
 /**
  Base class for creating custom domain-specific flows that are essentially convenience wrappers around existing SDK
@@ -15,7 +16,11 @@
 
 @interface EMBCustomFlow : NSObject
 
-+ (instancetype _Nonnull)flow;
+/**
+Creates an EMBCustomFlow instance.
+ */
+
++ (nonnull instancetype)flow;
 
 /**
  Starts a custom moment.
@@ -28,7 +33,9 @@
  
  @return A moment identifier that uniquely identifies the newly started moment instance.
  */
-- (NSString * _Nullable)momentStartWithName:(NSString * _Nonnull)momentName allowScreenshot:(BOOL)allowScreenshot properties:(NSDictionary * _Nullable)properties;
+- (nullable NSString *)momentStartWithName:(nonnull NSString *)momentName
+                           allowScreenshot:(BOOL)allowScreenshot
+                                properties:(nullable EMBProperties *)properties;
 
 /**
  Completes all started instances of the specified custom moment.
@@ -40,7 +47,7 @@
 
  @return True if the operation was successful; false otherwise.
  */
-- (BOOL)momentCompleteWithName:(NSString * _Nonnull)momentName;
+- (BOOL)momentCompleteWithName:(nonnull NSString *)momentName;
 
 /**
  Completes all started instances of the specified custom moment.
@@ -54,7 +61,8 @@
 
  @return True if the operation was successful; false otherwise.
  */
-- (BOOL)momentCompleteWithName:(NSString * _Nonnull)momentName properties:(NSDictionary * _Nullable)properties;
+- (BOOL)momentCompleteWithName:(nonnull NSString *)momentName
+                    properties:(nullable EMBProperties *)properties;
 
 /**
  Completes a started instance of the custom moment specified by the moment identifier.
@@ -70,7 +78,8 @@
 
  @return True if the operation was successful; false otherwise.
  */
-- (BOOL)momentCompleteWithName:(NSString * _Nonnull)momentName momentId:(NSString * _Nullable)momentId;
+- (BOOL)momentCompleteWithName:(nonnull NSString *)momentName
+                      momentId:(nullable NSString *)momentId;
 
 /**
  Completes a started instance of the custom moment specified by the moment identifier.
@@ -88,7 +97,9 @@
 
  @return True if the operation was successful; false otherwise.
  */
-- (BOOL)momentCompleteWithName:(NSString * _Nonnull)momentName momentId:(NSString * _Nullable)momentId properties:(NSDictionary * _Nullable)properties;
+- (BOOL)momentCompleteWithName:(nonnull NSString *)momentName
+                      momentId:(nullable NSString *)momentId
+                    properties:(nullable EMBProperties *)properties;
 
 /**
  Fails all started instances of the specified custom moment and generates an error log message for each failed
@@ -103,7 +114,8 @@
  
  @return True if the operation was successful; false otherwise.
  */
-- (BOOL)momentFailWithName:(NSString * _Nonnull)momentName message:(NSString * _Nullable)message;
+- (BOOL)momentFailWithName:(nonnull NSString *)momentName
+                   message:(nullable NSString *)message;
 
 /**
  Fails all started instances of the specified custom moment and generates an error log message for each failed
@@ -120,7 +132,9 @@
 
  @return True if the operation was successful; false otherwise.
  */
-- (BOOL)momentFailWithName:(NSString * _Nonnull)momentName message:(NSString * _Nullable)message properties:(NSDictionary * _Nullable)properties;
+- (BOOL)momentFailWithName:(nonnull NSString *)momentName
+                   message:(nullable NSString *)message
+                properties:(nullable EMBProperties *)properties;
 
 /**
  Fails a started instance of the custom moment specified by the moment identifier and sends an error log message for
@@ -139,7 +153,9 @@
  
  @return True if the operation was successful; false otherwise.
  */
-- (BOOL)momentFailWithName:(NSString * _Nonnull)momentName momentId:(NSString * _Nullable)momentId message:(NSString * _Nullable)message;
+- (BOOL)momentFailWithName:(nonnull NSString *)momentName
+                  momentId:(nullable NSString *)momentId
+                   message:(nullable NSString *)message;
 
 /**
  Fails a started instance of the custom moment specified by the moment identifier and sends an error log message for
@@ -160,6 +176,9 @@
 
  @return True if the operation was successful; false otherwise.
  */
-- (BOOL)momentFailWithName:(NSString * _Nonnull)momentName momentId:(NSString * _Nullable)momentId message:(NSString * _Nullable)message properties:(NSDictionary * _Nullable)properties;
+- (BOOL)momentFailWithName:(nonnull NSString *)momentName
+                  momentId:(nullable NSString *)momentId
+                   message:(nullable NSString *)message
+                properties:(nullable EMBProperties *)properties;
 
 @end

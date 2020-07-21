@@ -30,7 +30,7 @@ class DetailViewController: UIViewController {
     // those events, even if that means adding API to ensure you capture them.
     override func viewWillDisappear(_ animated: Bool) {
         let msg = String(format: "Returning from detail page for: \(String(describing: self.detailItem))")
-        Embrace.sharedInstance()?.logBreadcrumb(withMessage: msg)
+        Embrace.sharedInstance().logBreadcrumb(withMessage: msg)
     }
 
     override func viewDidLoad() {

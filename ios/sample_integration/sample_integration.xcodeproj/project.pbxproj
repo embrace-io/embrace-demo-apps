@@ -17,7 +17,36 @@
 		72540A0024899BA800DCB938 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 725409FE24899BA800DCB938 /* LaunchScreen.storyboard */; };
 		72540A082489A16400DCB938 /* Embrace-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 72540A072489A16400DCB938 /* Embrace-Info.plist */; };
 		72540A0C248D78B600DCB938 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 72540A0B248D78B600DCB938 /* README.md */; };
+		729C9CF824C7A7EB00D3FDF3 /* LocalFrameworkDependency.h in Headers */ = {isa = PBXBuildFile; fileRef = 729C9CF624C7A7EB00D3FDF3 /* LocalFrameworkDependency.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		729C9CFB24C7A7EB00D3FDF3 /* LocalFrameworkDependency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 729C9CF424C7A7EB00D3FDF3 /* LocalFrameworkDependency.framework */; };
+		729C9CFC24C7A7EB00D3FDF3 /* LocalFrameworkDependency.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 729C9CF424C7A7EB00D3FDF3 /* LocalFrameworkDependency.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		729C9D0324C7A93900D3FDF3 /* LocalFrameworkMain.h in Headers */ = {isa = PBXBuildFile; fileRef = 729C9D0124C7A93900D3FDF3 /* LocalFrameworkMain.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		729C9D0424C7A93900D3FDF3 /* LocalFrameworkMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 729C9D0224C7A93900D3FDF3 /* LocalFrameworkMain.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		729C9CF924C7A7EB00D3FDF3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 725409E624899BA700DCB938 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 729C9CF324C7A7EB00D3FDF3;
+			remoteInfo = LocalFrameworkDependency;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		729C9CFD24C7A7EB00D3FDF3 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				729C9CFC24C7A7EB00D3FDF3 /* LocalFrameworkDependency.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		562472C248FCE888B064308C /* Pods_sample_integration.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_sample_integration.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -32,6 +61,11 @@
 		72540A0124899BA800DCB938 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		72540A072489A16400DCB938 /* Embrace-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Embrace-Info.plist"; sourceTree = "<group>"; };
 		72540A0B248D78B600DCB938 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		729C9CF424C7A7EB00D3FDF3 /* LocalFrameworkDependency.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LocalFrameworkDependency.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		729C9CF624C7A7EB00D3FDF3 /* LocalFrameworkDependency.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalFrameworkDependency.h; sourceTree = "<group>"; };
+		729C9CF724C7A7EB00D3FDF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		729C9D0124C7A93900D3FDF3 /* LocalFrameworkMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocalFrameworkMain.h; sourceTree = "<group>"; };
+		729C9D0224C7A93900D3FDF3 /* LocalFrameworkMain.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocalFrameworkMain.m; sourceTree = "<group>"; };
 		D6C4C1E31B30356DF5DB962C /* Pods-sample_integration.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sample_integration.release.xcconfig"; path = "Target Support Files/Pods-sample_integration/Pods-sample_integration.release.xcconfig"; sourceTree = "<group>"; };
 		FE178D18F52D33EB846A0DF8 /* Pods-sample_integration.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-sample_integration.debug.xcconfig"; path = "Target Support Files/Pods-sample_integration/Pods-sample_integration.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -41,7 +75,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				729C9CFB24C7A7EB00D3FDF3 /* LocalFrameworkDependency.framework in Frameworks */,
 				5DA3A5B0866832B23015F619 /* Pods_sample_integration.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		729C9CF124C7A7EB00D3FDF3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -53,6 +95,7 @@
 			children = (
 				72540A0B248D78B600DCB938 /* README.md */,
 				725409F024899BA700DCB938 /* sample_integration */,
+				729C9CF524C7A7EB00D3FDF3 /* LocalFrameworkDependency */,
 				725409EF24899BA700DCB938 /* Products */,
 				A11297F4A3792626D057226A /* Pods */,
 				801EA66ED5F8DB8E8A6A9222 /* Frameworks */,
@@ -63,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				725409EE24899BA700DCB938 /* sample_integration.app */,
+				729C9CF424C7A7EB00D3FDF3 /* LocalFrameworkDependency.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -81,6 +125,17 @@
 				72540A072489A16400DCB938 /* Embrace-Info.plist */,
 			);
 			path = sample_integration;
+			sourceTree = "<group>";
+		};
+		729C9CF524C7A7EB00D3FDF3 /* LocalFrameworkDependency */ = {
+			isa = PBXGroup;
+			children = (
+				729C9CF624C7A7EB00D3FDF3 /* LocalFrameworkDependency.h */,
+				729C9CF724C7A7EB00D3FDF3 /* Info.plist */,
+				729C9D0124C7A93900D3FDF3 /* LocalFrameworkMain.h */,
+				729C9D0224C7A93900D3FDF3 /* LocalFrameworkMain.m */,
+			);
+			path = LocalFrameworkDependency;
 			sourceTree = "<group>";
 		};
 		801EA66ED5F8DB8E8A6A9222 /* Frameworks */ = {
@@ -102,6 +157,18 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		729C9CEF24C7A7EB00D3FDF3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				729C9D0324C7A93900D3FDF3 /* LocalFrameworkMain.h in Headers */,
+				729C9CF824C7A7EB00D3FDF3 /* LocalFrameworkDependency.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		725409ED24899BA700DCB938 /* sample_integration */ = {
 			isa = PBXNativeTarget;
@@ -113,15 +180,35 @@
 				725409EC24899BA700DCB938 /* Resources */,
 				72540A0F248EA97000DCB938 /* Embrace Symbol Upload */,
 				8B4DAA6E28D5C93DB6FACF83 /* [CP] Embed Pods Frameworks */,
+				729C9CFD24C7A7EB00D3FDF3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				729C9CFA24C7A7EB00D3FDF3 /* PBXTargetDependency */,
 			);
 			name = sample_integration;
 			productName = sample_integration;
 			productReference = 725409EE24899BA700DCB938 /* sample_integration.app */;
 			productType = "com.apple.product-type.application";
+		};
+		729C9CF324C7A7EB00D3FDF3 /* LocalFrameworkDependency */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 729C9D0024C7A7EB00D3FDF3 /* Build configuration list for PBXNativeTarget "LocalFrameworkDependency" */;
+			buildPhases = (
+				729C9CEF24C7A7EB00D3FDF3 /* Headers */,
+				729C9CF024C7A7EB00D3FDF3 /* Sources */,
+				729C9CF124C7A7EB00D3FDF3 /* Frameworks */,
+				729C9CF224C7A7EB00D3FDF3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LocalFrameworkDependency;
+			productName = LocalFrameworkDependency;
+			productReference = 729C9CF424C7A7EB00D3FDF3 /* LocalFrameworkDependency.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
@@ -134,6 +221,9 @@
 				ORGANIZATIONNAME = Embrace;
 				TargetAttributes = {
 					725409ED24899BA700DCB938 = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					729C9CF324C7A7EB00D3FDF3 = {
 						CreatedOnToolsVersion = 11.5;
 					};
 				};
@@ -152,6 +242,7 @@
 			projectRoot = "";
 			targets = (
 				725409ED24899BA700DCB938 /* sample_integration */,
+				729C9CF324C7A7EB00D3FDF3 /* LocalFrameworkDependency */,
 			);
 		};
 /* End PBXProject section */
@@ -166,6 +257,13 @@
 				72540A0C248D78B600DCB938 /* README.md in Resources */,
 				725409FD24899BA800DCB938 /* Assets.xcassets in Resources */,
 				725409FB24899BA700DCB938 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		729C9CF224C7A7EB00D3FDF3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,7 +341,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		729C9CF024C7A7EB00D3FDF3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				729C9D0424C7A93900D3FDF3 /* LocalFrameworkMain.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		729C9CFA24C7A7EB00D3FDF3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 729C9CF324C7A7EB00D3FDF3 /* LocalFrameworkDependency */;
+			targetProxy = 729C9CF924C7A7EB00D3FDF3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		725409F924899BA700DCB938 /* Main.storyboard */ = {
@@ -420,6 +534,56 @@
 			};
 			name = Release;
 		};
+		729C9CFE24C7A7EB00D3FDF3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = LocalFrameworkDependency/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.200monkeys.LocalFrameworkDependency;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		729C9CFF24C7A7EB00D3FDF3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = LocalFrameworkDependency/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.200monkeys.LocalFrameworkDependency;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -437,6 +601,15 @@
 			buildConfigurations = (
 				72540A0524899BA800DCB938 /* Debug */,
 				72540A0624899BA800DCB938 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		729C9D0024C7A7EB00D3FDF3 /* Build configuration list for PBXNativeTarget "LocalFrameworkDependency" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				729C9CFE24C7A7EB00D3FDF3 /* Debug */,
+				729C9CFF24C7A7EB00D3FDF3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

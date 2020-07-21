@@ -7,6 +7,7 @@
 //
 
 #import "EMBCustomFlow.h"
+#import "EMBConstants.h"
 
 /**
  This class is responsible for tracking app performance during purchase flows.
@@ -33,7 +34,10 @@
  @return A moment identifier that can be used to close the add-to-cart moment. If an error was encountered, this
          method returns null.
  */
-- (NSString * _Nonnull)addToCartStartWithItemId:(NSString * _Nullable)itemId quantity:(NSNumber * _Nullable)quantity price:(NSNumber * _Nullable)price properties:(NSDictionary * _Nullable)properties;
+- (nonnull NSString *)addToCartStartWithItemId:(nullable NSString *)itemId
+                                      quantity:(nullable NSNumber *)quantity
+                                         price:(nullable NSNumber *)price
+                                    properties:(nullable EMBProperties *)properties;
 
 /**
  Ends a particular add-to-cart moment instance and generates an info log message that indicates that adding to the
@@ -47,7 +51,7 @@
 
  @return True if the operation was successful; false otherwise.
  */
-- (BOOL)addToCartCompleteWithMomentId:(NSString * _Nonnull)momentId;
+- (BOOL)addToCartCompleteWithMomentId:(nonnull NSString *)momentId;
 
 /**
  Ends a particular add-to-cart moment instance and generates an info log message that indicates that adding to the
@@ -64,7 +68,8 @@
 
  @return True if the operation was successful; false otherwise.
  */
-- (BOOL)addToCartCompleteWithMomentId:(NSString * _Nonnull)momentId properties:(NSDictionary * _Nullable)properties;
+- (BOOL)addToCartCompleteWithMomentId:(nonnull NSString *)momentId
+                           properties:(nullable EMBProperties *)properties;
 
 /**
  Ends a particular add-to-cart moment instance and generates an error log message that indicates that adding to the
@@ -80,7 +85,8 @@
 
  @return True if the operation was successful; false otherwise.
  */
-- (BOOL)addToCartFailWithMomentId:(NSString * _Nonnull)momentId message:(NSString * _Nullable)message;
+- (BOOL)addToCartFailWithMomentId:(nonnull NSString *)momentId
+                          message:(nullable NSString *)message;
 
 /**
  Ends a particular add-to-cart moment instance and generates an error log message that indicates that adding to the
@@ -99,7 +105,9 @@
 
  @return True if the operation was successful; false otherwise.
  */
-- (BOOL)addToCartFailWithMomentId:(NSString * _Nonnull)momentId message:(NSString * _Nullable)message properties:(NSDictionary * _Nullable)properties;
+- (BOOL)addToCartFailWithMomentId:(nonnull NSString *)momentId
+                          message:(nullable NSString *)message
+                       properties:(nullable EMBProperties *)properties;
 
 /**
  Starts a purchase moment.
@@ -123,7 +131,11 @@
 
  @return True if the operation was successful; false otherwise.
  */
-- (BOOL)purchaseStartWithOrderId:(NSString * _Nullable)orderId numItems:(NSNumber * _Nullable)numItems amount:(NSNumber * _Nullable)amount paymentType:(NSString * _Nullable)paymentType properties:(NSDictionary * _Nullable)properties;
+- (BOOL)purchaseStartWithOrderId:(nullable NSString *)orderId
+                        numItems:(nullable NSNumber *)numItems
+                          amount:(nullable NSNumber *)amount
+                     paymentType:(nullable NSString *)paymentType
+                      properties:(nullable EMBProperties *)properties;
 
 /**
  Ends the purchase moment and generates an info log message that indicates that the purchase completed.
@@ -145,7 +157,7 @@
 
  @return True if the operation was successful; false otherwise.
  */
-- (BOOL)purchaseCompleteWithProperties:(NSDictionary * _Nullable)properties;
+- (BOOL)purchaseCompleteWithProperties:(nullable EMBProperties *)properties;
 
 /**
  Ends the purchase moment and generates an error log message that indicates that the purchase failed.
@@ -157,7 +169,7 @@
  
  @return True if the operation was successful; false otherwise.
  */
-- (BOOL)purchaseFailWithMessage:(NSString * _Nullable)message;
+- (BOOL)purchaseFailWithMessage:(nullable NSString *)message;
 
 /**
  Ends the purchase moment and generates an error log message that indicates that the purchase failed.
@@ -172,6 +184,7 @@
 
  @return True if the operation was successful; false otherwise.
  */
-- (BOOL)purchaseFailWithMessage:(NSString * _Nullable)message properties:(NSDictionary * _Nullable)properties;
+- (BOOL)purchaseFailWithMessage:(nullable NSString *)message
+                     properties:(nullable EMBProperties *)properties;
 
 @end
