@@ -16,11 +16,9 @@ class DetailViewController: UIViewController {
 
     func configureView() {
         // Update the user interface for the detail item.
-        if let detail = detailItem {
-            if let label = detailDescriptionLabel {
-                label.text = detail.description
-            }
-        }
+        guard let detail = detailItem else { return }
+        guard let label = detailDescriptionLabel else { return }
+        label.text = detail.description
     }
     
     // EMBRACE HINT:
@@ -30,7 +28,7 @@ class DetailViewController: UIViewController {
     // those events, even if that means adding API to ensure you capture them.
     override func viewWillDisappear(_ animated: Bool) {
         let msg = String(format: "Returning from detail page for: \(String(describing: self.detailItem))")
-        Embrace.sharedInstance()?.logBreadcrumb(withMessage: msg)
+        Embrace.sharedInstance().logBreadcrumb(withMessage: msg)
     }
 
     override func viewDidLoad() {
@@ -39,7 +37,7 @@ class DetailViewController: UIViewController {
         configureView()
     }
 
-    var detailItem: NSDate? {
+    var detailItem: Date? {
         didSet {
             // Update the view.
             configureView()
