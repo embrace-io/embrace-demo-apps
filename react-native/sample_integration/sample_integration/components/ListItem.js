@@ -7,7 +7,13 @@ import {
   TextInput,
 } from 'react-native';
 import {Icon} from 'react-native-eva-icons';
-import {logBreadcrumb, logMessage, INFO, WARNING} from 'react-native-embrace';
+import {
+  logMessage,
+  WARNING,
+  startMoment,
+  endMoment,
+} from 'react-native-embrace';
+import useConstructor from '../util/custom_hooks';
 
 const ListItem = ({
   item,
@@ -23,6 +29,29 @@ const ListItem = ({
   const checked = checkedItems.filter(
     (checkedItem) => checkedItem.id === item.id,
   );
+  // EMBRACE HINT:
+  // Storing constants like moment or breadcrumb names make typos less likely.
+  const mountedMoment = 'ListItem Mounted';
+  useConstructor(() => {
+    //This only happens ONCE and it happens BEFORE the initial render.
+
+    // EMBRACE HINT:
+    // Moments are a great way to measure the performance and abandonment of workflows within your application.
+    // We recommend to wrap non user interruptable flows with moments. For example, here we are measuring how long
+    // it takes this component to render.
+    startMoment(mountedMoment);
+  });
+
+  useEffect(() => {
+    //This only happens ONCE. But it happens AFTER the initial render
+
+    // EMBRACE HINT:
+    // This is where we end our edit item moment.  We wanted to measure this interaction as it is core to our user experience.
+    // By measuring user interactions in this manner you can start to understand how app performance impacts your user journey.
+    // Always make sure to end moments you start, Embrace considered any non-ended moment to be an abandonment by the user
+    endMoment(mountedMoment);
+  });
+
   useEffect(() => {
     // EMBRACE HINT:
     // Event logging is how you can ensure that events are available in alerts as they happen, rather than when sessions end.

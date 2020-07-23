@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, FlatList, Alert, SafeAreaView} from 'react-native';
 
 import Header from './components/Header';
 import ListItem from './components/ListItem';
 import AddItem from './components/AddItem';
-import {startMoment, endMoment, logBreadcrumb} from 'react-native-embrace';
+import {logBreadcrumb, endAppStartup} from 'react-native-embrace';
 import useConstructor from './util/custom_hooks';
 
 const App = () => {
@@ -17,18 +17,14 @@ const App = () => {
   });
   const [checkedItems, checkedItemChange] = useState([]);
 
-  // EMBRACE HINT:
-  // Storing constants like moment or breadcrumb names make typos less likely.
-  const mountedMoment = 'App Mounted';
-
   useConstructor(() => {
     //This only happens ONCE and it happens BEFORE the initial render.
 
     // EMBRACE HINT:
-    // Moments are a great way to measure the performance and abandonment of workflows within your application.
-    // We recommend to wrap non user interruptable flows with moments. For example, here we are measuring how long
-    // it takes this component to render.
-    startMoment(mountedMoment);
+    // The Embrace SDK automatically records the special “startup” moment that’s used to track app launch performance.
+    // You should end the startup moment before the user has a chance to interact with the application.
+    // Add this method call to every location where the startup moment can end. You can call this method as many times as you like.
+    endAppStartup();
   });
   const [items, setItems] = useState([
     {
@@ -48,16 +44,6 @@ const App = () => {
       text: 'Juice',
     },
   ]);
-
-  useEffect(() => {
-    //This only happens ONCE. But it happens AFTER the initial render
-
-    // EMBRACE HINT:
-    // This is where we end our edit item moment.  We wanted to measure this interaction as it is core to our user experience.
-    // By measuring user interactions in this manner you can start to understand how app performance impacts your user journey.
-    // Always make sure to end moments you start, Embrace considered any non-ended moment to be an abandonment by the user
-    endMoment(mountedMoment);
-  });
 
   const deleteItem = (targetID) => {
     setItems((prevItems) => {
