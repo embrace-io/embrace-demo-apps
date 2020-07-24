@@ -1,11 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, FlatList, Alert, SafeAreaView} from 'react-native';
 
 import Header from './components/Header';
 import ListItem from './components/ListItem';
 import AddItem from './components/AddItem';
 import {logBreadcrumb, endAppStartup} from 'react-native-embrace';
-import useConstructor from './util/custom_hooks';
 
 const App = () => {
   // Flag true if user is currently editing an item
@@ -17,8 +16,8 @@ const App = () => {
   });
   const [checkedItems, checkedItemChange] = useState([]);
 
-  useConstructor(() => {
-    //This only happens ONCE and it happens BEFORE the initial render.
+  useEffect(() => {
+    //This only happens ONCE. But it happens AFTER the initial render.
 
     // EMBRACE HINT:
     // The Embrace SDK automatically records the special “startup” moment that’s used to track app launch performance.
