@@ -1,0 +1,25 @@
+
+{
+  "app_id": "YOUR_API_KEY",
+  "api_token": "YOUR_APP_TOKEN",
+  "sdk_config": {
+    "networking": {
+      "trace_id_header": "test_trace_id_header",
+      "default_capture_limit": 10
+    },
+    "crash_handler": {
+      "enabled": true
+    },
+    "base_urls": {
+      "data": "https://data.emb-api.com"
+    },
+    "startup_moment": {
+      "automatically_end": false,
+      "take_screenshot": true
+    },
+    "taps": {
+      "capture_coordinates": true
+    }
+  }
+
+}
