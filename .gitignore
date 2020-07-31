@@ -36,3 +36,7 @@ xcuserdata/
 ## Sonar
 .scannerwork
 sonar-output
+
+#Cocoapods
+Pods
+Podfile.lock
