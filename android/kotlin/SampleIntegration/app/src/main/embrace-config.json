@@ -1,0 +1,28 @@
+{
+  "app_id": "APP_ID",
+  "api_token": "API_TOKEN",
+  "sdk_config": {
+    "base_urls.REMOVE_THIS_TO_SET": {
+      "config.REMOVE_THIS_TO_SET": "YOUR_IP_ADDRESS",
+      "data.REMOVE_THIS_TO_SET": "YOUR_IP_ADDRESS",
+      "data_dev.REMOVE_THIS_TO_SET": "YOUR_IP_ADDRESS",
+      "images.REMOVE_THIS_TO_SET": "YOUR_IP_ADDRESS"
+    },
+    "crash_handler.REMOVE_THIS_TO_SET": {
+      "enabled": true
+    },
+    "networking.REMOVE_THIS_TO_SET": {
+      "capture_request_content_length.REMOVE_THIS_TO_SET": false
+    },
+    "session.REMOVE_THIS_TO_SET": {
+      "max_session_seconds.REMOVE_THIS_TO_SET": 60
+    },
+    "startup_moment.REMOVE_THIS_TO_SET": {
+      "automatically_end.REMOVE_THIS_TO_SET": false,
+      "take_screenshot.REMOVE_THIS_TO_SET": false
+    },
+    "taps.REMOVE_THIS_TO_SET": {
+      "capture_coordinates.REMOVE_THIS_TO_SET": false
+    }
+  }
+}

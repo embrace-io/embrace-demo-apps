@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Embrace Sample Integration</string>
+    <string name="title_item_detail">Item Detail</string>
+    <string name="button_title_remove">remove</string>
+</resources>
