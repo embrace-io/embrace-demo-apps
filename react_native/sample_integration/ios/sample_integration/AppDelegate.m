@@ -4,6 +4,13 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 
+// EMBRACE HINT:
+// Embrace is integrated using CocoaPods. 
+//  If you just installed the library to the project and it is failing to build, simply run
+// 'pod install' from the root of the IOS project in terminal,  See: https://embrace.io/docs/react-native/add-embrace-sdk/
+// Keep an eye on the terminal since it should warn you about this.
+#import <Embrace/Embrace.h> 
+
 #ifdef FB_SONARKIT_ENABLED
 #import <FlipperKit/FlipperClient.h>
 #import <FlipperKitLayoutPlugin/FlipperKitLayoutPlugin.h>
@@ -11,13 +18,6 @@
 #import <FlipperKitNetworkPlugin/FlipperKitNetworkPlugin.h>
 #import <SKIOSNetworkPlugin/SKIOSNetworkAdapter.h>
 #import <FlipperKitReactPlugin/FlipperKitReactPlugin.h>
-
-// EMBRACE HINT:
-// Embrace is integrated using CocoaPods. 
-//  If you just installed the library to the project and it is failing to build, simply run
-// 'pod install' from the root of the IOS project in terminal,  See: https://embrace.io/docs/react-native/add-embrace-sdk/
-// Keep an eye on the terminal since it should warn you about this.
-#import <Embrace/Embrace.h> 
 
 static void InitializeFlipper(UIApplication *application) {
   FlipperClient *client = [FlipperClient sharedClient];
