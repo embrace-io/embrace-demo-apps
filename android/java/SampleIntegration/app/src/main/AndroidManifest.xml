@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.io.embrace.sampleintegration">
 
+<!--    EMBRACE HINT:-->
+<!--    You’ll need to set the following permissions so the Embrace SDK can send events and monitor connectivity.-->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name=".SampleIntegrationApplication"
