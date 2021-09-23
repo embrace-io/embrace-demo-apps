@@ -132,37 +132,36 @@ class ItemListActivity : AppCompatActivity() {
     ) :
         RecyclerView.Adapter<ViewHolder>() {
 
-        private val navigateDetailListener: View.OnClickListener
+        private val navigateDetailListener: View.OnClickListener = View.OnClickListener { v ->
+            val item = v.tag as Item.DummyItem
+
+            // EMBRACE HINT:
+            // Embrace has two options for logging events, breadcrumbs and logs.  This is an example of breadcrumb.
+            // Breadcrumbs are lightweight items that little overhead to your application
+            // Use them to track branching and state changes that are relevant to the session but not urgent for alerting.
+            val msg = String.format("Navigating to detail page for: %s", item.id)
+            Embrace.getInstance().logBreadcrumb(msg)
+
+            if (twoPane) {
+                val fragment = ItemDetailFragment().apply {
+                    arguments = Bundle().apply {
+                        putString(ItemDetailFragment.ARG_ITEM_ID, item.id)
+                    }
+                }
+                parentActivity.supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.item_detail_container, fragment)
+                    .commit()
+            } else {
+                val intent = Intent(v.context, ItemDetailActivity::class.java).apply {
+                    putExtra(ItemDetailFragment.ARG_ITEM_ID, item.id)
+                }
+                v.context.startActivity(intent)
+            }
+        }
         private val removeListener: View.OnClickListener
 
         init {
-            navigateDetailListener = View.OnClickListener { v ->
-                val item = v.tag as Item.DummyItem
-
-                // EMBRACE HINT:
-                // Embrace has two options for logging events, breadcrumbs and logs.  This is an example of breadcrumb.
-                // Breadcrumbs are lightweight items that little overhead to your application
-                // Use them to track branching and state changes that are relevant to the session but not urgent for alerting.
-                val msg = String.format("Navigating to detail page for: %s", item.id)
-                Embrace.getInstance().logBreadcrumb(msg)
-
-                if (twoPane) {
-                    val fragment = ItemDetailFragment().apply {
-                        arguments = Bundle().apply {
-                            putString(ItemDetailFragment.ARG_ITEM_ID, item.id)
-                        }
-                    }
-                    parentActivity.supportFragmentManager
-                        .beginTransaction()
-                        .replace(R.id.item_detail_container, fragment)
-                        .commit()
-                } else {
-                    val intent = Intent(v.context, ItemDetailActivity::class.java).apply {
-                        putExtra(ItemDetailFragment.ARG_ITEM_ID, item.id)
-                    }
-                    v.context.startActivity(intent)
-                }
-            }
 
             removeListener = View.OnClickListener { v ->
                 val position = v.tag as Int
