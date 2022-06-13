@@ -46,11 +46,11 @@ public class ItemListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.add_item);
+        FloatingActionButton fab = findViewById(R.id.add_item);
         fab.setOnClickListener(view -> mAdapter.addNewItem());
 
         if (findViewById(R.id.item_detail_container) != null) {
@@ -304,8 +304,8 @@ public class ItemListActivity extends AppCompatActivity {
 
             ItemViewHolder(View view) {
                 super(view);
-                mIdView = (TextView) view.findViewById(R.id.id_text);
-                mContentView = (TextView) view.findViewById(R.id.content);
+                mIdView = view.findViewById(R.id.id_text);
+                mContentView = view.findViewById(R.id.content);
             }
         }
 
@@ -314,7 +314,7 @@ public class ItemListActivity extends AppCompatActivity {
 
             MenuViewHolder(View view) {
                 super(view);
-                mRemove = (TextView) view.findViewById(R.id.remove);
+                mRemove = view.findViewById(R.id.remove);
             }
         }
     }
