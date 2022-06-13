@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.sample_integration">
+    package="com.sample_integration">
 
 <!--    EMBRACE HINT:-->
 <!--    You’ll need to set the following permissions so the Embrace SDK can send events and monitor connectivity.-->
