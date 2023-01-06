@@ -12,7 +12,7 @@ import UIKit
 // 'pod update' from the root of the project in terminal,  See: https://docs.embrace.io/docs/ios-integration-guide
 // Additionally open the 'Embrace-Info.plist' file and fill in your own API_KEY
 // Make sure to look at the 'Embrace Symbol Upload' build phase to learn about dsyms and symbolication
-//import Embrace
+import Embrace
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
