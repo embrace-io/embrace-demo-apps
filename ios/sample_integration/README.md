@@ -9,10 +9,10 @@ As you read through the code, look out for "Embrace Hint" comments.  These expla
 ## Instructions for running
 Embrace is integrated with this project using cocoa pods.  Make sure you run "pod update" from the root folder to get the latest version.
 
-To try this sample against your own integration, first sign up for an Embrace API key here: https://dash.embrace.io
+To try this sample against your own integration, first sign up for an Embrace API key here: https://dash.embrace.io/
 
 This project contains an Embrace-Info.plist.  Open that file and replace "USE_YOUR_KEY" with your real key.
 
 ## Further reading
 To learn more about Embrace visit our website: https://embrace.io/
-Or check out of full documentation: https://docs.embrace.io/
+Or check out of full documentation: https://embrace.io/docs/
