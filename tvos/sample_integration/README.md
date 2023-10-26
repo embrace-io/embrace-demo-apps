@@ -15,4 +15,4 @@ This project contains an Embrace-Info.plist.  Open that file and replace "USE_YO
 
 ## Further reading
 To learn more about Embrace visit our website: https://embrace.io/
-Or check out of full documentation: https://docs.embrace.io/
+Or check out of full documentation: https://embrace.io/docs/
