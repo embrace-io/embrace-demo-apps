@@ -9,7 +9,7 @@
 import UIKit
 // EMBRACE HINT:
 // Embrace is integrated using cocoapods.  If you just downloaded the project and it is failing to build, simply run
-// 'pod update' from the root of the project in terminal,  See: https://docs.embrace.io/docs/ios-integration-guide
+// 'pod update' from the root of the project in terminal,  See: https://embrace.io/docs/ios/
 // Additionally open the 'Embrace-Info.plist' file and fill in your own API_KEY
 // Make sure to look at the 'Embrace Symbol Upload' build phase to learn about dsyms and symbolication
 //import Embrace
@@ -71,7 +71,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // As you can see from this project, Embrace is much more than just a simple crash tracker.  If you do want to try out
         // Embrace's crash tracking capabilities, simply uncomment the below dispatch call.  Ensure that you run your application on
         // real hardware, without Xcode running, to ensure the crash is captured correctly.
-        // see: https://docs.embrace.io/docs/crash-debugging for more information
+        // see: https://embrace.io/docs/ for more information
 //        DispatchQueue.main.asyncAfter(deadline: .now()+5) {
 //            Embrace.sharedInstance().crash()
 //        }
